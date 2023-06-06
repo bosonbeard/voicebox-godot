@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpy4sru6f0p7u"]
+
+[ext_resource type="Texture2D" uid="uid://ddltlnk532fpa" path="res://art/spider1.png" id="1_pac5e"]
+[ext_resource type="PackedScene" uid="uid://bm14wuvyhnpli" path="res://Player.tscn" id="2_nk7gv"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2x5vo"]
+specular_color = Color(0.47451, 0.2, 0.431373, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2sm0"]
+size = Vector2(88, 13)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vf8n1"]
+radius = 39.6138
+height = 101.153
+
+[node name="Main" type="Node"]
+
+[node name="wall" type="StaticBody2D" parent="."]
+position = Vector2(117, 383)
+
+[node name="Sprite2D" type="Sprite2D" parent="wall"]
+self_modulate = Color(0.372549, 0.196078, 0.207843, 1)
+scale = Vector2(90.2931, -12.9286)
+texture = SubResource("CanvasTexture_2x5vo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_c2sm0")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(324, 203)
+gravity_scale = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(0.999969, -3)
+rotation = 0.758568
+scale = Vector2(0.513628, 0.475864)
+texture = ExtResource("1_pac5e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1, -1)
+rotation = 0.128994
+shape = SubResource("CapsuleShape2D_vf8n1")
+
+[node name="player" parent="." instance=ExtResource("2_nk7gv")]
+position = Vector2(49, 348)
+scale = Vector2(0.430557, 0.430557)
+
+[node name="wall2" type="StaticBody2D" parent="."]
+position = Vector2(269, 382)
+
+[node name="Sprite2D" type="Sprite2D" parent="wall2"]
+self_modulate = Color(0.372549, 0.196078, 0.207843, 1)
+scale = Vector2(90.2931, -12.9286)
+texture = SubResource("CanvasTexture_2x5vo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_c2sm0")
+
+[node name="wall3" type="StaticBody2D" parent="."]
+position = Vector2(420, 381)
+
+[node name="Sprite2D" type="Sprite2D" parent="wall3"]
+self_modulate = Color(0.372549, 0.196078, 0.207843, 1)
+scale = Vector2(90.2931, -12.9286)
+texture = SubResource("CanvasTexture_2x5vo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall3"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_c2sm0")
