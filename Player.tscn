@@ -1,27 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm14wuvyhnpli"]
+[gd_scene load_steps=7 format=3 uid="uid://bm14wuvyhnpli"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_e4y6g"]
-[ext_resource type="Texture2D" uid="uid://cy7gnaraubr6a" path="res://art/kuzma.png" id="2_vxhn4"]
+[ext_resource type="Texture2D" uid="uid://bmt17uex1iipi" path="res://art/boy_stand1.png" id="2_a8xkb"]
+[ext_resource type="Texture2D" uid="uid://db7popm8scpfn" path="res://art/boy_go1.png" id="3_to7ce"]
+[ext_resource type="Texture2D" uid="uid://clgagx04s73k6" path="res://art/boy_jump1.png" id="4_c6f15"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jy4yh"]
-radius = 39.6138
-height = 101.153
+[sub_resource type="SpriteFrames" id="SpriteFrames_hs3du"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a8xkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a8xkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a8xkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c6f15")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a8xkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_to7ce")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
-[node name="Player" type="CharacterBody2D"]
-position = Vector2(222, 237)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btlx2"]
+radius = 52.0716
+height = 254.094
+
+[node name="Player" type="Area2D"]
+position = Vector2(45, 9)
 script = ExtResource("1_e4y6g")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(65, -10)
-rotation = 0.0470045
-scale = Vector2(0.127528, 0.118151)
-texture = ExtResource("2_vxhn4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10.8, 129.52)
+scale = Vector2(0.655714, 0.664086)
+sprite_frames = SubResource("SpriteFrames_hs3du")
+animation = &"stand"
+frame_progress = 0.21966
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(66, -8)
+position = Vector2(14, 123)
 rotation = -0.0155912
-shape = SubResource("CapsuleShape2D_jy4yh")
+shape = SubResource("CapsuleShape2D_btlx2")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

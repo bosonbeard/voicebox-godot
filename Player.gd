@@ -1,45 +1,73 @@
-extends CharacterBody2D
+extends Area2D
 
+@export  var speed = 4000;
+var screen_size # Size of the game windo
+enum sky_positions {UP, MIDLE, BOTTOM}
+var row_size= 200
+var padding = 10
+var player_sky_pos = sky_positions.UP
+var moving = false
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	$HTTPRequest.connect("request_completed", _on_http_request_request_completed)
+	screen_size = get_viewport_rect().size
+	position.y = 0
+	moving = false
+	$AnimatedSprite2D.animation = "stand"
+	$AnimatedSprite2D.play()
 
 
-func _on_http_request_request_completed(result, response_code, headers, body):
+func fload():
+	var file = FileAccess.open("res://config.cfg", FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	return String(content)
 
-	var json = JSON.stringify(body.get_string_from_utf8())
-	print(json)
+func go_fly():
+	moving = true
+	$AnimatedSprite2D.animation = "walk"
+	print ("FLY")
+	var a = fload()
+	print(a)
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		#print("lol")
-		velocity.x += 10
-	else:
-		var direction = Input.get_axis("ui_left", "ui_right")
-		#print("floor")
-	# Handle Jump.
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-			$HTTPRequest.request("http://www.mocky.io/v2/5185415ba171ea3a00704eed")
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good          practice, you should replace UI actions with custom gameplay actions.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
 	
-		if direction:
-			velocity.x = direction * SPEED 
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED )
+	var velocity = Vector2.ZERO # The player's movement vector.
+	if moving == false:
+		if Input.is_action_pressed("move_down"):
+			player_sky_pos +=1
+			if player_sky_pos >2: 
+				player_sky_pos = 2
+			print ("DOWN")
+			go_fly()
+		if Input.is_action_pressed("move_up"):
+			player_sky_pos -=1
+			if player_sky_pos <0: 
+				player_sky_pos = 0
+			print ("UP")
+			go_fly()
+	
+	
 
-	move_and_slide()
 
 
-
+		
+	if round(position.y) > ((player_sky_pos)  * row_size) : 
+		velocity.y -=  (speed * delta)
+		
+	elif round(position.y) < ((player_sky_pos )  * row_size) :
+		velocity.y +=  (speed * delta)
+	else:
+		velocity.y =0
+		position.y = player_sky_pos   * row_size
+		print ( "aaaa")
+		moving = false
+		$AnimatedSprite2D.animation = "stand"
+		
+	position += velocity * delta
+	position.x = clamp(position.x, 0, screen_size.x)
+	position.y = clamp(position.y, 0, screen_size.y)
