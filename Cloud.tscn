@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://drcreuoivymub"]
+
+[ext_resource type="Texture2D" uid="uid://deh2p582el7pf" path="res://art/cloud1.png" id="1_8d0xk"]
+[ext_resource type="Texture2D" uid="uid://6fqlmwwplpr7" path="res://art/cloud2.png" id="2_eiwmy"]
+[ext_resource type="Texture2D" uid="uid://ci1xb4wxwcpo3" path="res://art/cloud3.png" id="3_0afvw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ojo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8d0xk")
+}],
+"loop": true,
+"name": &"cloud1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_eiwmy")
+}],
+"loop": true,
+"name": &"cloud2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0afvw")
+}],
+"loop": true,
+"name": &"cloud3",
+"speed": 5.0
+}]
+
+[node name="Cloud" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.784314)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_6ojo0")
+animation = &"cloud3"
