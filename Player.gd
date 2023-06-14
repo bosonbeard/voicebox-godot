@@ -1,6 +1,6 @@
 extends Area2D
 
-@export  var speed = 4000;
+@export  var speed = 5100;
 var screen_size # Size of the game windo
 enum sky_positions {UP, MIDLE, BOTTOM}
 var row_size= 200
@@ -26,9 +26,9 @@ func fload():
 func go_fly():
 	moving = true
 	$AnimatedSprite2D.animation = "walk"
-	print ("FLY")
+
 	var a = fload()
-	print(a)
+
 
 
 
@@ -42,13 +42,13 @@ func _process(delta):
 			player_sky_pos +=1
 			if player_sky_pos >2: 
 				player_sky_pos = 2
-			print ("DOWN")
+
 			go_fly()
 		if Input.is_action_pressed("move_up"):
 			player_sky_pos -=1
 			if player_sky_pos <0: 
 				player_sky_pos = 0
-			print ("UP")
+
 			go_fly()
 	
 	
@@ -64,7 +64,7 @@ func _process(delta):
 	else:
 		velocity.y =0
 		position.y = player_sky_pos   * row_size
-		print ( "aaaa")
+
 		moving = false
 		$AnimatedSprite2D.animation = "stand"
 		
