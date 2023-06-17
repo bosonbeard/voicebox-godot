@@ -12,19 +12,14 @@ $db = new SQLite3('control.db');
 //$songId=$_REQUEST["s"];
 //echo "aaa".$songId;
 
-$dt = date('c', time());
-//$sql = 'INSERT INTO "commands" ("key", "phone", "timestamp", "is_readed") VALUES("up", "79651988777",'.$dt.',0)';
-//    echo "stat1 {$sql}";
-$sql = "INSERT INTO commands (`key`,`phone`, `timestamp`, `is_readed`) VALUES('up','79651988777','$dt',0)";
-$result = $db->querySingle($sql);
 
 //echo $dt;
 
 
-$sql = "SELECT `key`  FROM commands";
+//$sql = "SELECT `key`  FROM commands";
  
-$result = $db->querySingle($sql, true);
-echo $result;
+//$result = $db->querySingle($sql, true);
+//echo $result;
 
 //echo $method;
 
@@ -36,12 +31,16 @@ switch ($method) {
         break;
     case "POST":
         $response = array('key' => "up" );
+        $dt = date('c', time());
+        //$sql = 'INSERT INTO "commands" ("key", "phone", "timestamp", "is_readed") VALUES("up", "79651988777",'.$dt.',0)';
+        //    echo "stat1 {$sql}";
+        $sql = "INSERT INTO commands (`key`,`phone`, `timestamp`, `is_readed`) VALUES('up','79651988777','$dt',0)";
+        $result = $db->querySingle($sql);
+
         break;
     default:
         echo '{"error":"unknown method"}';
         break;
 }
 
-
-//echo json_encode($response);
-?>
+echo json_encode($response);
