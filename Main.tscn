@@ -40,10 +40,10 @@ one_shot = true
 autostart = true
 
 [node name="CloudTimer" type="Timer" parent="."]
-wait_time = 2.277
+wait_time = 1.985
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 2.703
+wait_time = 6.598
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="CloudTimer" to="." method="_on_cloud_timer_timeout"]

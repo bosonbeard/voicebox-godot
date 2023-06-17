@@ -3,11 +3,12 @@ extends Node
 @export var cloud_scene: PackedScene
 @export var mob_scene: PackedScene
 var score
+var start_pos = Vector2(25,0)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	new_game()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,10 +19,18 @@ func _process(delta):
 func _on_start_timer_timeout():
 	$CloudTimer.start()
 	$MobTimer.start()
-	_on_mob_timer_timeout()
+
 	
 
+func game_over():
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	%CloudTimer.stop()
 
+func new_game():
+	score = 0
+	$Player.start(start_pos)
+	$StartTimer.start()
 
 
 func _on_cloud_timer_timeout():

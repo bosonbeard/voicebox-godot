@@ -37,23 +37,26 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btlx2"]
-radius = 52.0716
-height = 254.094
+radius = 56.9619
+height = 369.955
 
 [node name="Player" type="Area2D"]
 position = Vector2(45, 9)
 script = ExtResource("1_e4y6g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(10.8, 129.52)
-scale = Vector2(0.655714, 0.664086)
+position = Vector2(23, 178)
+scale = Vector2(0.708983, 0.943969)
 sprite_frames = SubResource("SpriteFrames_hs3du")
 animation = &"stand"
 frame_progress = 0.21966
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(14, 123)
+position = Vector2(19, 178)
 rotation = -0.0155912
 shape = SubResource("CapsuleShape2D_btlx2")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
