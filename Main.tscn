@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpy4sru6f0p7u"]
+[gd_scene load_steps=7 format=3 uid="uid://cpy4sru6f0p7u"]
 
 [ext_resource type="Texture2D" uid="uid://db0s4267vn3ew" path="res://art/background.png" id="1_ixn4p"]
+[ext_resource type="Script" path="res://Main.gd" id="1_tqcyl"]
 [ext_resource type="PackedScene" uid="uid://bm14wuvyhnpli" path="res://Player.tscn" id="2_nk7gv"]
 [ext_resource type="PackedScene" uid="uid://drcreuoivymub" path="res://Cloud.tscn" id="3_sl8g7"]
+[ext_resource type="PackedScene" uid="uid://cesbyrgi27ct4" path="res://Crown.tscn" id="5_42gpn"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_suv6l"]
+[sub_resource type="Curve2D" id="Curve2D_cjrdv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 757, 0, 0, 0, 0, 0, 741, -1, 0, 0, 0, 0, 757, 480, 0, 0, 0, 0, 742, 481, 0, 0, 0, 0, 757, 0)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
+script = ExtResource("1_tqcyl")
+cloud_scene = ExtResource("3_sl8g7")
+mob_scene = ExtResource("5_42gpn")
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 760.0
@@ -17,7 +26,25 @@ texture = ExtResource("1_ixn4p")
 position = Vector2(24, 86)
 scale = Vector2(0.3, 0.3)
 
-[node name="Cloud" parent="." instance=ExtResource("3_sl8g7")]
-texture_filter = 2
-material = SubResource("CanvasItemMaterial_suv6l")
-position = Vector2(694, 102)
+[node name="CloudPath" type="Path2D" parent="."]
+position = Vector2(2, 0)
+curve = SubResource("Curve2D_cjrdv")
+
+[node name="CloudSpawnLocation" type="PathFollow2D" parent="CloudPath"]
+visible = false
+position = Vector2(757, 0)
+rotation = -3.07917
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="CloudTimer" type="Timer" parent="."]
+wait_time = 1.985
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 6.598
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="CloudTimer" to="." method="_on_cloud_timer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
