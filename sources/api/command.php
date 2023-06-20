@@ -7,6 +7,13 @@ header("Content-Type: application/json");
 $method = $_SERVER['REQUEST_METHOD'];
 
 
+$phone = $_REQUEST["phone"];
+$command = $_REQUEST["command"];
+$fw = fopen("log.txt", "a+");
+fwrite($fw, $phone." ".$command."\r\n");
+fclose($fw);
+
+
 $db = new SQLite3('control.db');
 
 //$songId=$_REQUEST["s"];
