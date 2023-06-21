@@ -8,26 +8,26 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_hs3du"]
 animations = [{
 "frames": [{
-"duration": 2.7,
+"duration": 4.0,
 "texture": ExtResource("3_wnire")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": ExtResource("2_aqrd7")
 }],
 "loop": true,
 "name": &"stand",
-"speed": 2.0
+"speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.2,
 "texture": ExtResource("2_aqrd7")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": ExtResource("4_8tljq")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btlx2"]
@@ -43,7 +43,7 @@ position = Vector2(58.4928, 204.389)
 scale = Vector2(0.814407, 1.08433)
 sprite_frames = SubResource("SpriteFrames_hs3du")
 animation = &"stand"
-frame_progress = 0.355177
+frame_progress = 0.44456
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(55, 204)
