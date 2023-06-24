@@ -33,18 +33,21 @@ func _ready():
 	moving = false
 	$AnimatedSprite2D.animation = "stand"
 	$AnimatedSprite2D.play()
+	var user_config = fload()
+	print(user_config.phone)
 
 
 func fload():
-	var file = FileAccess.open("res://config.cfg", FileAccess.READ)
+	var file = FileAccess.open("res://config.json", FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
-	return String(content)
+	var result_json = JSON.parse_string(content)
+	return result_json
 
 func go_fly():
 	moving = true
 	$AnimatedSprite2D.animation = "walk"
-	var a = fload()
+	
 	calling_key = ""
 
 
@@ -94,3 +97,7 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	calling_key = json.key
 	print(json.key)
+
+
+func _on_request_timer_timeout():
+	$HTTPRequest.request("http://testrest.mehappy.ru/godot/command.php?phone=79651977888")

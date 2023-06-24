@@ -9,41 +9,30 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 $phone = $_REQUEST["phone"];
 $command = $_REQUEST["command"];
+$dt = date('c', time());
 $fw = fopen("log.txt", "a+");
-fwrite($fw, $phone." ".$command."\r\n");
+fwrite($fw, $phone." ".$command." ".$dt."\r\n");
 fclose($fw);
 
 
 $db = new SQLite3('control.db');
 
-//$songId=$_REQUEST["s"];
-//echo "aaa".$songId;
-
-
-//echo $dt;
-
-
-//$sql = "SELECT `key`  FROM commands";
- 
-//$result = $db->querySingle($sql, true);
-//echo $result;
-
-//echo $method;
-
 
 switch ($method) {
     case "GET":
-        $response = array('key' => "down" );
+        $sql = "SELECT `key`   FROM commands WHERE `phone` = '$phone' AND `is_readed`=0  ORDER BY `timestamp` DESC";
+        
+        $result_key = $db->querySingle($sql);
+        $sql = "UPDATE commands SET `is_readed`=1  WHERE `phone` = '$phone' AND `is_readed`=0   ";
+        $result = $db->querySingle($sql, true);
+        
+        $response = array('key' => $result_key, 'phone'=> $phone  );
 
         break;
     case "POST":
-        $response = array('key' => "up" );
-        $dt = date('c', time());
-        //$sql = 'INSERT INTO "commands" ("key", "phone", "timestamp", "is_readed") VALUES("up", "79651988777",'.$dt.',0)';
-        //    echo "stat1 {$sql}";
-        $sql = "INSERT INTO commands (`key`,`phone`, `timestamp`, `is_readed`) VALUES('up','79651988777','$dt',0)";
+        $sql = "INSERT INTO commands (`key`,`phone`, `timestamp`, `is_readed`) VALUES('$command','$phone','$dt',0)";
         $result = $db->querySingle($sql);
-
+        $response = array('key' => $command, 'phone'=> $phone );
         break;
     default:
         echo '{"error":"unknown method"}';

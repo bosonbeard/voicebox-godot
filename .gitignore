@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /config.cfg
+config.json
+sources/api/log.txt

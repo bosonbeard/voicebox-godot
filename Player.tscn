@@ -52,5 +52,9 @@ shape = SubResource("CapsuleShape2D_btlx2")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="RequestTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="RequestTimer" to="." method="_on_request_timer_timeout"]
