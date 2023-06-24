@@ -35,6 +35,7 @@ func _ready():
 	$AnimatedSprite2D.play()
 	var user_config = fload()
 	print(user_config.phone)
+	
 
 
 func fload():

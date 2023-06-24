@@ -8,7 +8,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_hs3du"]
 animations = [{
 "frames": [{
-"duration": 4.0,
+"duration": 5.0,
 "texture": ExtResource("3_wnire")
 }, {
 "duration": 1.5,
@@ -16,7 +16,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"stand",
-"speed": 4.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.2,

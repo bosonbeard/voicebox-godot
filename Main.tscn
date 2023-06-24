@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpy4sru6f0p7u"]
+[gd_scene load_steps=8 format=3 uid="uid://cpy4sru6f0p7u"]
 
 [ext_resource type="Texture2D" uid="uid://db0s4267vn3ew" path="res://art/background.png" id="1_ixn4p"]
 [ext_resource type="Script" path="res://Main.gd" id="1_tqcyl"]
 [ext_resource type="PackedScene" uid="uid://bm14wuvyhnpli" path="res://Player.tscn" id="2_nk7gv"]
 [ext_resource type="PackedScene" uid="uid://drcreuoivymub" path="res://Cloud.tscn" id="3_sl8g7"]
+[ext_resource type="PackedScene" uid="uid://b7ldyrm86plhv" path="res://Hud.tscn" id="4_gavon"]
 [ext_resource type="PackedScene" uid="uid://cesbyrgi27ct4" path="res://Crown.tscn" id="5_42gpn"]
 
 [sub_resource type="Curve2D" id="Curve2D_cjrdv"]
@@ -23,7 +24,8 @@ offset_bottom = 480.0
 texture = ExtResource("1_ixn4p")
 
 [node name="Player" parent="." instance=ExtResource("2_nk7gv")]
-position = Vector2(24, 86)
+visible = false
+position = Vector2(25, 4)
 scale = Vector2(0.3, 0.3)
 
 [node name="CloudPath" type="Path2D" parent="."]
@@ -43,8 +45,16 @@ autostart = true
 wait_time = 1.985
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 6.598
+wait_time = 2.95
 
+[node name="FinishTimer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource("4_gavon")]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="CloudTimer" to="." method="_on_cloud_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

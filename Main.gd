@@ -2,14 +2,12 @@ extends Node
 
 @export var cloud_scene: PackedScene
 @export var mob_scene: PackedScene
-var score
-var start_pos = Vector2(25,0)
+var start_pos = Vector2(25,1)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game()
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,19 +17,22 @@ func _process(delta):
 func _on_start_timer_timeout():
 	$CloudTimer.start()
 	$MobTimer.start()
-
+	$FinishTimer.start()
 	
 
 func game_over():
-	$ScoreTimer.stop()
 	$MobTimer.stop()
-	%CloudTimer.stop()
+	$CloudTimer.stop()
+	$FinishTimer.stop()
+	$HUD.show_game_over()
+	
 
 func new_game():
-	score = 0
+	$HUD.show_message("Get Ready")
 	$Player.start(start_pos)
 	$StartTimer.start()
-
+	get_tree().call_group("mobs", "queue_free")	
+	$Player.player_sky_pos = $Player.sky_positions.UP
 
 func _on_cloud_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -53,11 +54,9 @@ func _on_cloud_timer_timeout():
 	var velocity = Vector2(randf_range(-105.0, -205.0), 0.0)
 	cloud.linear_velocity = velocity 
 
-
-
-	# Spawn the mob by adding it to the Main scene.
+	# Spawn the cloud by adding it to the Main scene.
 	add_child(cloud)
-	print ("WTF")
+
 
 
 func _on_mob_timer_timeout():
@@ -83,3 +82,5 @@ func _on_mob_timer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
+
+
