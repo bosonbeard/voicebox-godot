@@ -2,7 +2,7 @@ extends Area2D
 
 @export  var speed = 5100;
 var screen_size # Size of the game windo
-enum sky_positions {UP, MIDLE, BOTTOM}
+enum sky_positions {UP, MIDLE, BOTTOM, GROUND}
 var row_size= 180
 var padding = 10
 var player_sky_pos = sky_positions.UP
@@ -91,7 +91,7 @@ func _process(delta):
 		
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+
 
 
 func _on_http_request_request_completed(result, response_code, headers, body):

@@ -45,11 +45,12 @@ autostart = true
 wait_time = 1.985
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 2.95
+wait_time = 5.0
 
 [node name="FinishTimer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 65.0
 one_shot = true
+autostart = true
 
 [node name="HUD" parent="." instance=ExtResource("4_gavon")]
 
@@ -57,4 +58,5 @@ one_shot = true
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="CloudTimer" to="." method="_on_cloud_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="FinishTimer" to="." method="victory"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

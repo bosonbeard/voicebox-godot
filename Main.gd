@@ -26,6 +26,15 @@ func game_over():
 	$FinishTimer.stop()
 	$HUD.show_game_over()
 	
+	
+func victory():
+	$MobTimer.stop()
+	$CloudTimer.stop()
+	$FinishTimer.stop()
+	$HUD.show_victory()
+	get_tree().call_group("mobs", "queue_free")	
+	$Player.player_sky_pos = $Player.sky_positions.GROUND
+	
 
 func new_game():
 	$HUD.show_message("Get Ready")
