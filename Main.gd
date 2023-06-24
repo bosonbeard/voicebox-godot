@@ -34,6 +34,7 @@ func victory():
 	$HUD.show_victory()
 	get_tree().call_group("mobs", "queue_free")	
 	$Player.player_sky_pos = $Player.sky_positions.GROUND
+	$Player.get_node("AnimatedSprite2D").animation = "walk"
 	
 
 func new_game():

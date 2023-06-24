@@ -19,7 +19,7 @@ animations = [{
 "speed": 3.0
 }, {
 "frames": [{
-"duration": 1.2,
+"duration": 1.5,
 "texture": ExtResource("2_aqrd7")
 }, {
 "duration": 1.5,
@@ -42,8 +42,8 @@ script = ExtResource("1_e4y6g")
 position = Vector2(58.4928, 204.389)
 scale = Vector2(0.814407, 1.08433)
 sprite_frames = SubResource("SpriteFrames_hs3du")
-animation = &"stand"
-frame_progress = 0.44456
+animation = &"walk"
+frame_progress = 0.738982
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(55, 204)

@@ -48,7 +48,7 @@ wait_time = 1.985
 wait_time = 5.0
 
 [node name="FinishTimer" type="Timer" parent="."]
-wait_time = 65.0
+wait_time = 61.0
 one_shot = true
 autostart = true
 

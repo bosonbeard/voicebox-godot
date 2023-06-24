@@ -17,7 +17,7 @@ func _on_body_entered(body):
 	hit.emit()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
-	print("colide")
+
 	
 	
 func start(pos):
@@ -34,7 +34,7 @@ func _ready():
 	$AnimatedSprite2D.animation = "stand"
 	$AnimatedSprite2D.play()
 	var user_config = fload()
-	print(user_config.phone)
+
 	
 
 
@@ -97,7 +97,7 @@ func _process(delta):
 func _on_http_request_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	calling_key = json.key
-	print(json.key)
+
 
 
 func _on_request_timer_timeout():
