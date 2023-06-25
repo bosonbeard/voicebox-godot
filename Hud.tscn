@@ -42,5 +42,14 @@ text = "Start
 wait_time = 2.0
 one_shot = true
 
+[node name="LinkButton" type="LinkButton" parent="."]
+offset_left = 325.0
+offset_top = 440.0
+offset_right = 365.0
+offset_bottom = 480.0
+theme_override_colors/font_color = Color(0.0235294, 0.184314, 0.423529, 1)
+text = "Kuzma's story"
+uri = "https://github.com/bosonbeard/voicebox-godot/blob/main/art/story.png"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

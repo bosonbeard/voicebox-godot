@@ -69,12 +69,6 @@ func _process(delta):
 			if player_sky_pos <0: 
 				player_sky_pos = 0
 			go_fly()
-	if Input.is_action_pressed("get_command"):
-		$HTTPRequest.request("http://testrest.mehappy.ru/godot/command.php")
-
-	
-
-
 
 		
 	if round(position.y) > ((player_sky_pos)  * row_size) : 

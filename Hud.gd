@@ -8,6 +8,13 @@ func show_message(text):
 	$Message.show()
 	$MessageTimer.start()
 	
+
+func fload():
+	var file = FileAccess.open("res://config.json", FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	var result_json = JSON.parse_string(content)
+	return result_json
 	
 	
 func show_game_over():
@@ -20,6 +27,7 @@ func show_game_over():
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
 	$StartButton.show()
+	$LinkButton.show()
 	
 func show_victory():
 	show_message("You win!")
@@ -31,11 +39,12 @@ func show_victory():
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
 	$StartButton.show()
+	$LinkButton.show()
 	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$LinkButton.uri=fload().url
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,10 +54,12 @@ func _process(delta):
 
 func _on_message_timer_timeout():
 	$Message.hide()
+	
 
 
 func _on_start_button_pressed():
 	$StartButton.hide()
+	$LinkButton.hide()
 	start_game.emit()	
 		
 
