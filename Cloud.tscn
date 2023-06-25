@@ -15,4 +15,6 @@ script = ExtResource("4_nuu5n")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_w68rj")
-animation = &"cloud3"
+animation = &"cloud1"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

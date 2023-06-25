@@ -39,3 +39,5 @@ animation = &"crown"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.56382
 shape = SubResource("CapsuleShape2D_kcbrp")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
