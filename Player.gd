@@ -8,6 +8,8 @@ var padding = 10
 var player_sky_pos = sky_positions.UP
 var moving = false
 var calling_key = ""
+var server_url = ""
+var phone = ""
 
 signal hit
 
@@ -91,8 +93,9 @@ func _process(delta):
 func _on_http_request_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	calling_key = json.key
+	server_url = json.server_url
 
 
 
 func _on_request_timer_timeout():
-	$HTTPRequest.request("http://testrest.mehappy.ru/godot/command.php?phone=79651977888")
+	$HTTPRequest.request(server_url+"/command.php?phone=phone")
