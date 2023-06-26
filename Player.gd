@@ -94,8 +94,9 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	calling_key = json.key
 	server_url = json.server_url
+	phone = json.phone
 
 
 
 func _on_request_timer_timeout():
-	$HTTPRequest.request(server_url+"/command.php?phone=phone")
+	$HTTPRequest.request(server_url+"/command.php?phone="+phone)
