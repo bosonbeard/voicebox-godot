@@ -35,6 +35,8 @@ script = ExtResource("1_qcwe7")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_1wrlb")
 animation = &"crown"
+frame = 1
+frame_progress = 0.431811
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.56382

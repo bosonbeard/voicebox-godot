@@ -2,13 +2,13 @@ extends CanvasLayer
 
 signal start_game
 
-
+# control the message on title screen
 func show_message(text):
 	$Message.text = text
 	$Message.show()
 	$MessageTimer.start()
 	
-
+# load config
 func fload():
 	var file = FileAccess.open("res://game-config.json", FileAccess.READ)
 	var content = file.get_as_text()
@@ -33,7 +33,6 @@ func show_victory():
 	show_message("You win!")
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
-
 	$Message.text = "Kuzma - the flying cat!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
@@ -44,6 +43,7 @@ func show_victory():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#read url to story link
 	$LinkButton.uri=fload().story_url
 
 

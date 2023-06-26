@@ -63,13 +63,13 @@ func _process(delta):
 	if moving == false:
 		if Input.is_action_pressed("move_down") or calling_key == "down" :
 			player_sky_pos +=1
-			if player_sky_pos >2: 
-				player_sky_pos = 2
+			if player_sky_pos > sky_positions.BOTTOM: 
+				player_sky_pos = sky_positions.BOTTOM
 			go_fly()
 		if Input.is_action_pressed("move_up") or calling_key == "up" :
 			player_sky_pos -=1
-			if player_sky_pos <0: 
-				player_sky_pos = 0
+			if player_sky_pos < sky_positions.UP: 
+				player_sky_pos = sky_positions.UP
 			go_fly()
 
 		
