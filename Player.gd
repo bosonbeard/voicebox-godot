@@ -41,7 +41,7 @@ func _ready():
 
 
 func fload():
-	var file = FileAccess.open("res://config.json", FileAccess.READ)
+	var file = FileAccess.open("res://game-config.json", FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
 	var result_json = JSON.parse_string(content)
