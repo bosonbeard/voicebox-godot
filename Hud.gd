@@ -56,7 +56,6 @@ func _on_message_timer_timeout():
 	$Message.hide()
 	
 
-
 func _on_start_button_pressed():
 	$StartButton.hide()
 	$LinkButton.hide()

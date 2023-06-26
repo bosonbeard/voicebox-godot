@@ -36,6 +36,7 @@ height = 402.944
 
 [node name="Player" type="Area2D"]
 position = Vector2(45, 9)
+collision_layer = 0
 script = ExtResource("1_e4y6g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

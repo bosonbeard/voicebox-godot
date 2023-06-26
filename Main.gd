@@ -2,7 +2,7 @@ extends Node
 
 @export var cloud_scene: PackedScene
 @export var mob_scene: PackedScene
-var start_pos = Vector2(25,1)
+var start_pos = Vector2(25,1) # start position for player
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,14 +19,14 @@ func _on_start_timer_timeout():
 	$MobTimer.start()
 	$FinishTimer.start()
 	
-
+# unsuccess game ending
 func game_over():
 	$MobTimer.stop()
 	$CloudTimer.stop()
 	$FinishTimer.stop()
 	$HUD.show_game_over()
 	
-	
+# function for success end game
 func victory():
 	$MobTimer.stop()
 	$CloudTimer.stop()
@@ -42,7 +42,7 @@ func new_game():
 	$Player.start(start_pos)
 	$StartTimer.start()
 	get_tree().call_group("mobs", "queue_free")	
-	$Player.player_sky_pos = $Player.sky_positions.UP
+	$Player.player_sky_pos = $Player.sky_positions.UP # reset player pos to the top of the screen
 
 func _on_cloud_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -66,7 +66,6 @@ func _on_cloud_timer_timeout():
 
 	# Spawn the cloud by adding it to the Main scene.
 	add_child(cloud)
-
 
 
 func _on_mob_timer_timeout():

@@ -33,7 +33,6 @@ position = Vector2(2, 0)
 curve = SubResource("Curve2D_cjrdv")
 
 [node name="CloudSpawnLocation" type="PathFollow2D" parent="CloudPath"]
-visible = false
 position = Vector2(757, 0)
 rotation = -3.07917
 
@@ -49,7 +48,6 @@ wait_time = 5.0
 [node name="FinishTimer" type="Timer" parent="."]
 wait_time = 61.0
 one_shot = true
-autostart = true
 
 [node name="HUD" parent="." instance=ExtResource("4_gavon")]
 

@@ -96,4 +96,4 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 #regular calling API by timer
 func _on_request_timer_timeout():
 	$HTTPRequest.request(user_config.server_url+"/command.php?phone="+user_config.phone)
-	print(user_config.server_url+"/command.php?phone="+user_config.phone)
+
