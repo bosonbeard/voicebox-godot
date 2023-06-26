@@ -39,7 +39,6 @@ rotation = -3.07917
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="CloudTimer" type="Timer" parent="."]
 wait_time = 1.985

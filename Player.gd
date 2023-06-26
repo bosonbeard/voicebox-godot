@@ -8,8 +8,7 @@ var padding = 10
 var player_sky_pos = sky_positions.UP
 var moving = false
 var calling_key = ""
-var server_url = ""
-var phone = ""
+var user_config  = ""
 
 signal hit
 
@@ -35,7 +34,8 @@ func _ready():
 	moving = false
 	$AnimatedSprite2D.animation = "stand"
 	$AnimatedSprite2D.play()
-	var user_config = fload()
+	user_config = fload()
+	print(user_config) 
 
 	
 
@@ -93,10 +93,10 @@ func _process(delta):
 func _on_http_request_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	calling_key = json.key
-	server_url = json.server_url
-	phone = json.phone
+
 
 
 
 func _on_request_timer_timeout():
-	$HTTPRequest.request(server_url+"/command.php?phone="+phone)
+	$HTTPRequest.request(user_config.server_url+"/command.php?phone="+user_config.phone)
+	print(user_config.server_url+"/command.php?phone="+user_config.phone)

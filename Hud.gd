@@ -10,7 +10,7 @@ func show_message(text):
 	
 
 func fload():
-	var file = FileAccess.open("res://config.json", FileAccess.READ)
+	var file = FileAccess.open("res://game-config.json", FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
 	var result_json = JSON.parse_string(content)
@@ -44,7 +44,7 @@ func show_victory():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$LinkButton.uri=fload().url
+	$LinkButton.uri=fload().story_url
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
